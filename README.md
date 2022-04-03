@@ -61,7 +61,7 @@ MIT
  
    [React]: <https://reactjs.org/>
    [Spring]: <https://spring.io/>
-   [ASP.NET Core]: <https://github.com/dotnet/aspnetcore>
+   [Hibernate]: <https://hibernate.org/>
    [AutoMapper]: <https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection/8.1.1?_src=template.>
    [SQL Server]: <https://www.microsoft.com/en-us/sql-server/sql-server-downloads>
 
