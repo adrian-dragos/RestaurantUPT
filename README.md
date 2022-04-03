@@ -5,19 +5,19 @@ Restaurant UPT  este o applicatie web destinata clientilor cantinii politehnicii
 ## Features
 
 - Utilizatorii se vor imparti in trei grupe: admini, clienti si studenti.
-- Adminii vor putea adauga meniul zilei in timp real
-- Utilizatorii vor putea vedea meniul zilei in timp real
-- Studenti vor putea sa procure tichete de masa
-- Studentii vor putea sa comande mancarea la pachet
+- Adminii vor putea adauga meniul zilei in timp real.
+- Utilizatorii vor putea vedea meniul zilei in timp real.
+- Studenti vor putea sa procure tichete de masa.
+- Studentii vor putea sa comande mancarea la pachet.
 
 
 ## Tech
 
 RestaurantUPT foloseste:
 
-- [React] - a library for building user interfaces
-- [.Net] - free. cross-platform. open source. a developer platform for building backend.
-- [ASP.NET Core] - an open-source and cross-platform framework for building modern cloud based internet connected applications.
+- [React] - a library for building user interfaces.
+- [Spring] - free. cross-platform. open source. a developer platform for building backend.
+- [Hibernate] - provides a framework for mapping an object-oriented domain model to a relational database.
 - [SQL Server] - SQL Server 2019 Express is a free edition of SQL Server, ideal for development and production for desktop, web, and small server applications.
 
 
