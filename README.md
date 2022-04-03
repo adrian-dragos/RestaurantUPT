@@ -8,6 +8,7 @@ Restaurant UPT  este o applicatie web destinata clientilor cantinii politehnicii
 - Adminii vor putea adauga meniul zilei in timp real
 - Utilizatorii vor putea vedea meniul zilei in timp real
 - Studenti vor putea sa procure tichete de masa
+- Studentii vor putea sa comande mancarea la pachet
 
 
 ## Tech
