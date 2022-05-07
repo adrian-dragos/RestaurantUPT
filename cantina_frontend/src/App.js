@@ -8,6 +8,7 @@ import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Menu from './Components/Menu';
+import Order from "./Components/Order";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/menu" element={<Menu />}/>
+            <Route path="/order" element={<Order />}/>
           </Routes>
     </BrowserRouter>
   );

@@ -11,6 +11,7 @@ function Navbar() {
             <NavMenu>
                     <NavLink to='/' activeStyle>Home</NavLink>
                     <NavLink to='/menu' activeStyle>Menu</NavLink>
+                    <NavLink to='/order' activeStyle>Order</NavLink>
                     <NavBtn>
                         <NavBtnLink to='/login'>Sign In</NavBtnLink>
                     </NavBtn> 

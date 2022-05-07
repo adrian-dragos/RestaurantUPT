@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {MenuContainer, 
        MenuHeading, 
        MenuWrapper,
@@ -13,6 +13,26 @@ import {MenuContainer,
       } from '../Styles/Menu.style'
 
 function Menu(){
+  
+  const [menu, setMenu] = useState([]);
+  
+  useEffect(() => {
+    fetchMenu();
+  }, [])
+
+  function fetchMenu(){
+    const url = 'https://localhost:44368/api/Menu'
+
+    fetch(url, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(menuItems => {
+      setMenu(menuItems);
+      console.log(menuItems);
+    })
+    .catch(error => console.log(error));
+  }
 
   const meniu = [{image: 'https://vatra.ro/images/ciorba-restaurant-vatra-bucuresti.jpg', name: 'Ciorba', description: 'Ciorba de vita', price: '13'},
                  {image: 'https://1.bp.blogspot.com/-xly5gOldT5c/XAapivnk1xI/AAAAAAAA_E8/Q5JUfWBzMY8guxsS4_NrxOqoHwOFIuFjACLcBGAs/s1600/snitel-de-porc-in-aluat.JPG', name: 'Snitel', description: 'Snitel de pui/porc cu garnitura la alegere', price: '25'},
@@ -32,7 +52,7 @@ function Menu(){
                   <MenuPrice>Pret: {mancare.price} lei</MenuPrice>
                 </MenuInfo>
                 <ButtonBox>
-                  <MenuButton>Comanda</MenuButton>
+                  <MenuButton onClick={() => console.log(menu)}>Comanda</MenuButton>
                 </ButtonBox>
             </MenuCard>
           ))}   
