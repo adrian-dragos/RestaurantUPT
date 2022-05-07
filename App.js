@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer,DefaultTheme } from "@react-navigation/native";
+import MainTabScreen from './Components/MainTabScreen';
+import { 
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem, 
+} from '@react-navigation/drawer';
+import { DrawerContent } from './Components/DrawerContent';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Profile from './Components/Profile';
+import Settings from './Components/Settings';
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Drawer.Navigator
+      drawerContent={props => <DrawerContent{...props} />}
+    >
+      <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="Settings" component={Settings} />
+    </Drawer.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+function App() {
+  return (
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
+  );
+}
+
+export default App;
