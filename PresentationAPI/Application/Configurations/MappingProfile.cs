@@ -1,6 +1,9 @@
-﻿using Application.DTOs.EntityDTOs;
+﻿using Application.DTOs.EntityDTOs.MenuDto;
+using Application.DTOs.EntityDTOs.OrderDto;
+using Application.DTOs.EnumDTOs;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +18,16 @@ namespace Application.Configurations
         {
             #region Menu Mappings
             CreateMap<Menu, MenuDto>().ReverseMap();
-            #endregion Menu
+            #endregion Menu Mappings
+
+            #region Order Mappings
+            CreateMap<Order, AddOrderToBasketDto>();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            #endregion Order Mappings
+
+            #region OrderStatus Mappings
+            CreateMap<OrderStatus, OrderStatusDto>().ReverseMap();
+            #endregion OrderStatusMappings
         }
     }
 }

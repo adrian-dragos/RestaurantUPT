@@ -26,6 +26,36 @@ namespace Persistance.Configurations.Entities
                     Id = 2,
                     Price = 4.25,
                     Name = "Orez"
+                },
+                new Meal
+                {
+                    Id = 3,
+                    Price = 4,
+                    Name = "Piept de pui"
+                },
+                new Meal
+                {
+                    Id = 4,
+                    Price = 4,
+                    Name = "Cotlet de porc"
+                },
+                new Meal
+                {
+                    Id = 5,
+                    Price = 4.25,
+                    Name = "Pula de pui dezosata"
+                },
+                new Meal
+                {
+                    Id = 6,
+                    Price = 3.25,
+                    Name = "Supa de pui"
+                },
+                new Meal
+                {
+                    Id = 7,
+                    Price = 3.25,
+                    Name = "Supa de legume"
                 }
             ) ;
         }

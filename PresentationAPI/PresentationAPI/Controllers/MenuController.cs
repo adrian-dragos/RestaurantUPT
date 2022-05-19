@@ -1,4 +1,4 @@
-﻿using Application.Features.Menu.Queries;
+﻿using Application.Features.Menus.Queries.GetMenuList;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +19,10 @@ namespace PresentationAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Menu>>> GetBookingSessions()
+        public async Task<ActionResult<List<Menu>>> GetMenuList()
         {
-            var bookingSession = await _mediator.Send(new GetMenuListQuery());
-            return Ok(bookingSession);
+            var menu = await _mediator.Send(new GetMenuListQuery());
+            return Ok(menu);
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using Application.DTOs.EntityDTOs;
+﻿using Application.DTOs.EntityDTOs.MenuDto;
 using Application.Interfaces;
 using AutoMapper;
 using MediatR;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Menu.Queries
+namespace Application.Features.Menus.Queries.GetMenuList
 {
     public class GetMenuListQueryHandler : IRequestHandler<GetMenuListQuery, IEnumerable<MenuDto>>
     {

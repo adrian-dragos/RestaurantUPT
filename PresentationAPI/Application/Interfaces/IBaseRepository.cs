@@ -17,5 +17,7 @@ namespace Application.Interfaces
         Task Remove(T entity);
         Task RemoveRange(IEnumerable<T> entities);
         Task Update(T entity);
+        Task SaveAsync();
+        public void Save();
     }
 }

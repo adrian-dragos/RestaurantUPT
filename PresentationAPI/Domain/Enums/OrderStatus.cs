@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities.Common
+namespace Domain.Enums
 {
-    public class BaseEntity
+    public enum OrderStatus
     {
-        public int? Id { get; set; }
+        InBasket = 0,
+        Ordered
     }
 }

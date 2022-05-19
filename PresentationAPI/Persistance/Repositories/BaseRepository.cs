@@ -58,5 +58,15 @@ namespace Persistance.Repositories
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
     }
 }
