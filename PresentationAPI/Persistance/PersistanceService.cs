@@ -21,7 +21,8 @@ namespace Persistance
 
             services.
                 AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
-                .AddScoped<IOrderRepository, OrderRepository>();
+                .AddScoped<IOrderRepository, OrderRepository>()
+                .AddScoped<IMenuRepository, MenuRepository>();
             return services;
         }
     }

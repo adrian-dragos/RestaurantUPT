@@ -74,21 +74,21 @@ namespace Persistance.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: true),
                     ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    OrdersId = table.Column<int>(type: "int", nullable: true)
+                    OrderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Meals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Meals_Orders_OrdersId",
-                        column: x => x.OrdersId,
+                        name: "FK_Meals_Orders_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
                 table: "Meals",
-                columns: new[] { "Id", "ImageData", "Name", "OrdersId", "Price" },
+                columns: new[] { "Id", "ImageData", "Name", "OrderId", "Price" },
                 values: new object[,]
                 {
                     { 1, null, "Cartofi Prajiti", null, 4.0 },
@@ -105,8 +105,8 @@ namespace Persistance.Migrations
                 columns: new[] { "Id", "Day", "MealId1", "MealId10", "MealId2", "MealId3", "MealId4", "MealId5", "MealId6", "MealId7", "MealId8", "MealId9" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), true, false, false, true, true, false, false, false, false, false },
-                    { 2, new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, true, false, false, true, false, true, false, false }
+                    { 1, new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(659), true, false, false, true, true, false, false, false, false, false },
+                    { 2, new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(724), false, false, true, false, false, true, false, true, false, false }
                 });
 
             migrationBuilder.InsertData(
@@ -114,8 +114,8 @@ namespace Persistance.Migrations
                 columns: new[] { "Id", "DateOfDelivery", "MealId", "Quantity", "Status", "StudentId", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 5, 18, 19, 35, 28, 786, DateTimeKind.Local).AddTicks(7296), 2, 1, 1, 1, 4.25 },
-                    { 2, new DateTime(2022, 5, 19, 19, 35, 28, 786, DateTimeKind.Local).AddTicks(7379), 1, 2, 0, 1, 8.0 }
+                    { 1, new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(968), 2, 1, 2, 1, 4.25 },
+                    { 2, new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(979), 1, 2, 0, 1, 8.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -128,9 +128,9 @@ namespace Persistance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Meals_OrdersId",
+                name: "IX_Meals_OrderId",
                 table: "Meals",
-                column: "OrdersId");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_IdNumber",

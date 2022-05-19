@@ -23,7 +23,7 @@ namespace Persistance.Configurations.Entities
                     Quantity = 1,
                     TotalPrice = 4.25,
                     DateOfDelivery = DateTime.Now.AddDays(-1),
-                    Status = OrderStatus.Ordered
+                    Status = OrderStatus.Done
                 },
                 new Order
                 {

@@ -21,8 +21,11 @@ namespace Application.Configurations
             #endregion Menu Mappings
 
             #region Order Mappings
-            CreateMap<Order, AddOrderToBasketDto>();
+            CreateMap<AddOrderToBasketDto, Order>()
+                .ForMember(x => x.Status, opt => opt.MapFrom(o => OrderStatus.InBasket));
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<MakeOrderDto, Order>()
+                .ForMember(x => x.Status, opt => opt.MapFrom(o => OrderStatus.InProgress));
             #endregion Order Mappings
 
             #region OrderStatus Mappings

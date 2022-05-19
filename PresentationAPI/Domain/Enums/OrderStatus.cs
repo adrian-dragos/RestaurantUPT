@@ -9,6 +9,7 @@ namespace Domain.Enums
     public enum OrderStatus
     {
         InBasket = 0,
-        Ordered
+        InProgress = 1,
+        Done = 2
     }
 }

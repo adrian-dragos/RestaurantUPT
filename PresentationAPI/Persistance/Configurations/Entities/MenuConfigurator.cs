@@ -17,7 +17,7 @@ namespace Persistance.Configurations.Entities
                 new Menu
                 {
                     Id = 1,
-                    Day = new DateTime(2022, 05, 9),
+                    Day = DateTime.Now.AddDays(-1),
                     MealId1 = true,
                     MealId3 = true,
                     MealId4 = true,
@@ -26,7 +26,7 @@ namespace Persistance.Configurations.Entities
                   new Menu
                   {
                       Id = 2,
-                      Day = new DateTime(2022, 05, 9),
+                      Day = DateTime.Now,
                       MealId2 = true,
                       MealId5 = true,
                       MealId7 = true,

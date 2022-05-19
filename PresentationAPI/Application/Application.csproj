@@ -17,5 +17,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Features\Menus\Commands\AddMeniu\" />
+	  <Folder Include="Features\Menus\Commands\DeleteMeniu\" />
+	  <Folder Include="Features\Orders\Commands\CompleteOrder\" />
+	  <Folder Include="Features\Orders\Queries\GetOrderedItems\" />
+	</ItemGroup>
 
 </Project>

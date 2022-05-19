@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface IOrderRepository : IBaseRepository<Order>
+    public interface IMenuRepository : IBaseRepository<Menu>
     {
-        Task<IEnumerable<Order>> GetOrdersFromBasket(int StudentId);
     }
 }

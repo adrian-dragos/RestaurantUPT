@@ -36,7 +36,7 @@ namespace Persistance.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrdersId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<double?>("Price")
@@ -44,7 +44,7 @@ namespace Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrdersId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Meals");
 
@@ -142,7 +142,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            Day = new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(659),
                             MealId1 = true,
                             MealId10 = false,
                             MealId2 = false,
@@ -157,7 +157,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            Day = new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(724),
                             MealId1 = false,
                             MealId10 = false,
                             MealId2 = true,
@@ -205,17 +205,17 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfDelivery = new DateTime(2022, 5, 18, 19, 35, 28, 786, DateTimeKind.Local).AddTicks(7296),
+                            DateOfDelivery = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(968),
                             MealId = 2,
                             Quantity = 1,
-                            Status = 1,
+                            Status = 2,
                             StudentId = 1,
                             TotalPrice = 4.25
                         },
                         new
                         {
                             Id = 2,
-                            DateOfDelivery = new DateTime(2022, 5, 19, 19, 35, 28, 786, DateTimeKind.Local).AddTicks(7379),
+                            DateOfDelivery = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(979),
                             MealId = 1,
                             Quantity = 2,
                             Status = 0,
@@ -268,11 +268,11 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Meal", b =>
                 {
-                    b.HasOne("Domain.Entities.Order", "Orders")
+                    b.HasOne("Domain.Entities.Order", "Order")
                         .WithMany("Meals")
-                        .HasForeignKey("OrdersId");
+                        .HasForeignKey("OrderId");
 
-                    b.Navigation("Orders");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>

@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,13 @@ namespace Persistance.Repositories
         private ApplicationContext _context;
         public OrderRepository(ApplicationContext context) : base(context)
         {
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersFromBasket(int StudentId)
+        {
+            return await _context.Orders
+                .Where(x => x.Id == StudentId)
+                .ToListAsync();
         }
     }
 }

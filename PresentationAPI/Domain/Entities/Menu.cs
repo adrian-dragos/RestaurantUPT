@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class Menu : BaseEntity
     {
-        public DateTime? Day { get; set; }
+        public DateTime Day { get; set; }
         public bool? MealId1 { get; set; } = false;
         public bool? MealId2 { get; set; } = false;        
         public bool? MealId3 { get; set; } = false;
