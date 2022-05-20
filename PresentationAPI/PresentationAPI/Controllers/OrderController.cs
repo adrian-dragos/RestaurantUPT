@@ -3,6 +3,7 @@ using Application.Features.Orders.Commands.AddOrderToBasket;
 using Application.Features.Orders.Commands.CompleteOrder;
 using Application.Features.Orders.Commands.DeleteOrderFromBasket;
 using Application.Features.Orders.Commands.MakeOrder;
+using Application.Features.Orders.Commands.UpateQuantityInBasket;
 using Application.Features.Orders.Queries.GetOrderedItems;
 using Application.Features.Orders.Queries.GetOrderFromBasket;
 using Domain.Entities;
@@ -67,5 +68,11 @@ namespace PresentationAPI.Controllers
             return NoContent();
         }
 
+        [HttpPatch("update-quantity-in-basket")]
+        public async Task<ActionResult<Unit>> UpdateMeal(List<UpdateMealQuantityInBasketDto> mealDto)
+        {
+            await _mediator.Send(new UpdateMealQuantityInBasketCommand { MealDto = mealDto });
+            return NoContent();
+        }
     }
 }
