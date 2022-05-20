@@ -34,6 +34,17 @@ function Menu(){
     .catch(error => console.log(error));
   }
 
+  function AddToOrder(menuItem){
+    const url = 'https://localhost:44368/api/Menu'
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(menuItem)
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+  }
+
   const meniu = [{image: 'https://vatra.ro/images/ciorba-restaurant-vatra-bucuresti.jpg', name: 'Ciorba', description: 'Ciorba de vita', price: '13'},
                  {image: 'https://1.bp.blogspot.com/-xly5gOldT5c/XAapivnk1xI/AAAAAAAA_E8/Q5JUfWBzMY8guxsS4_NrxOqoHwOFIuFjACLcBGAs/s1600/snitel-de-porc-in-aluat.JPG', name: 'Snitel', description: 'Snitel de pui/porc cu garnitura la alegere', price: '25'},
                  {image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCaO4V8bPf9yzfXiaXl5UvTyNvIN0Y40FrvlkZsQnSsFvSt30ASCfw9kos2awqJ3Zsnm0&usqp=CAU', name: 'Cotlet', description: 'Cotlet de porc la gratar cu garnitura la alegere', price: '30'},
@@ -52,7 +63,7 @@ function Menu(){
                   <MenuPrice>Pret: {mancare.price} lei</MenuPrice>
                 </MenuInfo>
                 <ButtonBox>
-                  <MenuButton onClick={() => console.log(menu)}>Comanda</MenuButton>
+                  <MenuButton onClick={AddToOrder(mancare)}>Comanda</MenuButton>
                 </ButtonBox>
             </MenuCard>
           ))}   

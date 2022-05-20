@@ -6,6 +6,7 @@ export const OrderBackground = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    padding-top: 35px;
 `
 
 export const OrderBox = styled.div`
@@ -66,11 +67,11 @@ export const Quantity = styled.span`
 
 export const FinalizeButton = styled.button`
     border-radius: 5px;
-    background: #90caf9;
+    background: #01135d;
     padding: 10px 22px;
     width: 400px;
     height: 50px;
-    color: #000;
+    color: #fff;
     border: none;
     outline: none;
     cursor: pointer;
@@ -79,8 +80,8 @@ export const FinalizeButton = styled.button`
     margin-top: 35px;
     &:hover {
         transition: all 0.2s ease-in-out;
-        background: #cae9ff;
-        color: #010606;
+        background: #023e8a;
+        color: #fff;
     }
     @media screen and (max-width: 768px){
         width: 350px;
@@ -108,10 +109,10 @@ export const SummaryBox = styled.div`
 
 export const RemoveButton = styled.button`
     border-radius: 4px;
-    background: #90caf9;
+    background: #01135d;
     width: 70px;
     height: 30px;
-    color: #000;
+    color: #fff;
     border: none;
     outline: none;
     cursor: pointer;
@@ -120,8 +121,8 @@ export const RemoveButton = styled.button`
     margin-top: 25px;
     &:hover {
         transition: all 0.2s ease-in-out;
-        background: #cae9ff;
-        color: #010606;
+        background: #023e8a;
+        color: #fff;
     }
     @media screen and (max-width: 768px){
         width: 350px;
