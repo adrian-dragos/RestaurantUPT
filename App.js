@@ -11,6 +11,11 @@ import { DrawerContent } from './Components/DrawerContent';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Profile from './Components/Profile';
 import Settings from './Components/Settings';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import Details from './Components/Details';
+import { createStackNavigator } from '@react-navigation/stack'
+import { StyleSheet } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +27,8 @@ function MyDrawer() {
       <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen name="Signup" component={Signup} />
     </Drawer.Navigator>
   );
 }

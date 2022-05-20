@@ -7,14 +7,14 @@ const image = { uri: "https://upload.wikimedia.org/wikipedia/commons/4/49/Univer
 const menuURL = "https://localhost:44368/api/Menu";
 
 function MenuScreen() {
-  const [isLoading, setLoading] = useState(true);
+   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [mealId, setMealId] = useState([]);
-  const [description, setDescription] = useState([]);
+  //const [mealId, setMealId] = useState([]);
+  //const [description, setDescription] = useState([]);
 
   const getMenu = async () =>{
     try {
-      const response = await axios.get('https://localhost:44368/api/Menu');
+      const response = await axios.get('https://10.0.2.2:44368/api/Menu');
       console.log(response.data);
       //const json = await response.json();
       //setData(json.day);
@@ -30,6 +30,7 @@ function MenuScreen() {
   useEffect(() => {
     getMenu();
   }, []);
+
 
   return (
     //<Text>Home</Text>

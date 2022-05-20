@@ -1,9 +1,9 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { MaterialCommunityIcons } from 'react-native-vector-icons'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HomeNew from './HomeNew';
+import Home from './Home';
 import Login from './Login';
 import MenuScreen from './MenuScreen';
 import BasketScreen from './BasketScreen';
@@ -19,36 +19,39 @@ const LoginStack = createStackNavigator();
 const MainTabScreen = () => (
     <Tab.Navigator
         initialRouteName="Home"
-        activeColor="#e91e63"
+        activeColor="#0000ff"
         style={{ backgroundColor: 'tomato' }}
     >
-        <Tab.Screen 
+        <Tab.Screen
             name="Home"
-            component={HomeNew}
+            component={Home}
             options={{
                 tabBarLabel: 'Acasa',
+                tabBarColor: '#01135d',
                 tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={26} />
+                    <Icon name="home" color={color} size={26} />
                 ),
             }}
         />
-        <Tab.Screen 
+        <Tab.Screen
             name="Menu"
             component={MenuScreen}
             options={{
                 tabBarLabel: 'Meniu',
+                tabBarColor: '#01135d',
                 tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="food" color={color} size={26} />
+                    <Icon name="food" color={color} size={26} />
                 ),
             }}
         />
-        <Tab.Screen 
+        <Tab.Screen
             name="Basket"
             component={BasketScreen}
             options={{
                 tabBarLabel: 'Cos',
+                tabBarColor: '#01135d',
                 tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="basket" color={color} size={26} />
+                    <Icon name="basket" color={color} size={26} />
                 ),
             }}
         />
@@ -57,8 +60,9 @@ const MainTabScreen = () => (
             component={OrdersScreen}
             options={{
                 tabBarLabel: 'Comenzi',
+                tabBarColor: '#01135d',
                 tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="clipboard-text-outline" color={color} size={26} />
+                    <Icon name="clipboard-text-outline" color={color} size={26} />
                 ),
             }}
         /> 
