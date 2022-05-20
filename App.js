@@ -29,8 +29,9 @@ function MyDrawer() {
       <Drawer.Screen name="Settings" component={Settings} />
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="Signup" component={Signup} />
+      <Drawer.Screen name="Details" component={Details} />
     </Drawer.Navigator>
-  );
+  ); 
 }
 
 

@@ -9,6 +9,7 @@ import MenuScreen from './MenuScreen';
 import BasketScreen from './BasketScreen';
 import OrdersScreen from './OrdersScreen';
 import Profile from "./Profile";
+import Menu from './Menu';
 import { MaterialBottomTabView } from "@react-navigation/material-bottom-tabs";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -35,7 +36,7 @@ const MainTabScreen = () => (
         />
         <Tab.Screen
             name="Menu"
-            component={MenuScreen}
+            component={Menu}
             options={{
                 tabBarLabel: 'Meniu',
                 tabBarColor: '#01135d',

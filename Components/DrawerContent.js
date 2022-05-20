@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     },
     bottomDrawerSection: {
         marginBottom: 15,
-        borderTopColor: '#f4f4f4',
+        borderTopColor: '#0000cc',
         borderTopWidth: 1,
     },
     preference: {
