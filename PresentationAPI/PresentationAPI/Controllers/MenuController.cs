@@ -30,8 +30,6 @@ namespace PresentationAPI.Controllers
             return Ok(menu);
         }
 
-
-
         [HttpGet("date")]
         public async Task<ActionResult<List<Menu>>> GetMenuListByDate(DateTime date)
         {

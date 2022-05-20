@@ -1,4 +1,5 @@
-﻿using Application.DTOs.EntityDTOs.MenuDto;
+﻿using Application.DTOs.EntityDTOs.MealDto;
+using Application.DTOs.EntityDTOs.MenuDto;
 using Application.DTOs.EntityDTOs.OrderDto;
 using Application.DTOs.EnumDTOs;
 using AutoMapper;
@@ -35,7 +36,12 @@ namespace Application.Configurations
 
             #region OrderStatus Mappings
             CreateMap<OrderStatus, OrderStatusDto>().ReverseMap();
-            #endregion OrderStatusMappings
+            #endregion OrderStatus Mappings
+
+            #region Meal Mappings
+            CreateMap<Meal, GetMealDto>().ReverseMap();
+            #endregion Meal Mappings
+
         }
     }
 }

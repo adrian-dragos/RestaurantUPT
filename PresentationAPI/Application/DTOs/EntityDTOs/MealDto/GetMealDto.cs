@@ -1,17 +1,15 @@
-﻿using Domain.Entities.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Application.DTOs.EntityDTOs.MealDto
 {
-    public class Meal : BaseEntity
+    public class GetMealDto
     {
         public string? Name { get; set; }
-        public double Price { get; set; }
+        public double? Price { get; set; }
         public byte[]? ImageData { get; set; }
-        public Order? Order { get; set; }
     }
 }
