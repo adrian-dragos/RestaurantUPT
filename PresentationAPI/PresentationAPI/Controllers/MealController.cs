@@ -1,8 +1,13 @@
 ﻿using Application.DTOs.EntityDTOs.MealDto;
+using Application.Features.Meals.Commands.CreateMeal;
+using Application.Features.Meals.Commands.DeleteMeal;
+using Application.Features.Meals.Commands.UpdateMeal;
 using Application.Features.Meals.Queries.GetMeal;
 using Application.Features.Meals.Queries.GetMealPrice;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PresentationAPI.Controllers
@@ -21,15 +26,36 @@ namespace PresentationAPI.Controllers
         [HttpGet("{mealId}/price")]
         public async Task<ActionResult<double>> GetMealPrice(int mealId)
         {
-            var menu = await _mediator.Send(new GetMealPriceQuery { MealId = mealId });
-            return Ok(menu);
+            var meal = await _mediator.Send(new GetMealPriceQuery { MealId = mealId });
+            return Ok(meal);
         }
 
         [HttpGet("{mealId}")]
         public async Task<ActionResult<GetMealDto>> GetMeal(int mealId)
         {
-            var menu = await _mediator.Send(new GetMealQuery { MealId = mealId });
-            return Ok(menu);
+            var meal = await _mediator.Send(new GetMealQuery { MealId = mealId });
+            return Ok(meal);
+        }
+
+        [HttpPut()]
+        public async Task<ActionResult<double>> CreateMeal(CreateMealDto mealDto)
+        {
+            var meal = await _mediator.Send(new CreateMealCommand { CreateMeal = mealDto });
+            return Ok(meal);
+        }
+
+        [HttpPatch()]
+        public async Task<ActionResult<Unit>> UpdateMeal(UpdateMealDto mealDto)
+        {
+            await _mediator.Send(new UpdateMealCommand { MealDto = mealDto });
+            return NoContent();
+        }
+
+        [HttpDelete()]
+        public async Task<ActionResult<Unit>> DeleteMeal([FromBody]List<int> ids)
+        {
+            await _mediator.Send(new DeleteMealCommand { Ids = ids });
+            return NoContent();
         }
     }
 }

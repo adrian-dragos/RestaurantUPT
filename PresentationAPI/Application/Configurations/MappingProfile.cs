@@ -5,11 +5,6 @@ using Application.DTOs.EnumDTOs;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Configurations
 {
@@ -40,6 +35,9 @@ namespace Application.Configurations
 
             #region Meal Mappings
             CreateMap<Meal, GetMealDto>().ReverseMap();
+            CreateMap<Meal, MealDto>().ReverseMap();
+            CreateMap<Meal, CreateMealDto>().ReverseMap();
+            CreateMap<Meal, UpdateMealDto>().ReverseMap();
             #endregion Meal Mappings
 
         }
