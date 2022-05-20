@@ -28,7 +28,10 @@ namespace Application.Features.Menus.Queries.GetMenuListOnSpecificDay
                 Find(x => x.Day.Day == query.Date.Day && 
                 x.Day.Month == query.Date.Month && x.Day.Year == query.Date.Year);
 
-            
+            if (!menuList.Any())
+            {
+                return default;
+            }
             return _mapper.Map<MenuDto>(menuList.First());
         }
     }

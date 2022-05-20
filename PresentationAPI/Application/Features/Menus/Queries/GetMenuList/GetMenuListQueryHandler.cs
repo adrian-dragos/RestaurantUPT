@@ -24,6 +24,10 @@ namespace Application.Features.Menus.Queries.GetMenuList
         public async Task<IEnumerable<MenuDto>> Handle(GetMenuListQuery query, CancellationToken cancellationToken)
         {
             var menuList = await _repository.GetAll();
+            if (!menuList.Any())
+            {
+                return default;
+            }
             return _mapper.Map<List<MenuDto>>(menuList);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
+using Domain.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,10 @@ namespace Application.Features.Orders.Commands.DeleteOrderFromBasket
         public async Task<Unit> Handle(DeleteOrderFromBasketCommand command, CancellationToken cancellationToken)
         {
             var order = await _repository.GetByIdAsync(command.Id);
+            if (order == null || order.Status != OrderStatus.InBasket)
+            {
+                return default;
+            }
             await _repository.Remove(order);
             await _repository.SaveAsync();
             return Unit.Value;

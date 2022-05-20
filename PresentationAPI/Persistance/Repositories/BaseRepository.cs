@@ -31,7 +31,7 @@ namespace Persistance.Repositories
 
         public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> expression)
         {
-            return _context.Set<T>().Where(expression);
+            return _context.Set<T>().AsNoTracking().Where(expression);
         }
 
         public async Task<IEnumerable<T>> GetAll()

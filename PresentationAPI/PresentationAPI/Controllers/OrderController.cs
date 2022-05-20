@@ -1,7 +1,9 @@
 ﻿using Application.DTOs.EntityDTOs.OrderDto;
 using Application.Features.Orders.Commands.AddOrderToBasket;
+using Application.Features.Orders.Commands.CompleteOrder;
 using Application.Features.Orders.Commands.DeleteOrderFromBasket;
 using Application.Features.Orders.Commands.MakeOrder;
+using Application.Features.Orders.Queries.GetOrderedItems;
 using Application.Features.Orders.Queries.GetOrderFromBasket;
 using Domain.Entities;
 using MediatR;
@@ -22,21 +24,28 @@ namespace PresentationAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("id")]
+        [HttpGet("{studentId}/basket")]
         public async Task<ActionResult<Order>> GetOrderItemsFromBasket(int studentId)
         {
             var order = await _mediator.Send(new GetOrderItemsFromBasketQuery { StudentId = studentId });
             return Ok(order);
         }
 
-        [HttpPost]
+        [HttpGet("{studentId}/orders-in-progress")]
+        public async Task<ActionResult<Order>> GetInProgressOrderedItems(int studentId)
+        {
+            var order = await _mediator.Send(new GetOrderItemsQuery { StudentId = studentId });
+            return Ok(order);
+        }
+
+        [HttpPost("add-to-basket")]
         public async Task<ActionResult<Order>> AddOrder([FromBody] AddOrderToBasketDto orderDto)
         {
             var order = await _mediator.Send(new AddOrderToBasket { AddOrderToBasketDto = orderDto});
             return Ok(order);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete-from-basket/{id}")]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
         {
             await _mediator.Send(new DeleteOrderFromBasketCommand { Id = id });
@@ -44,10 +53,17 @@ namespace PresentationAPI.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPatch("make-order")]
         public async Task<ActionResult<Unit>> MakeOrder([FromBody] List<MakeOrderDto> orders)
         {
             await _mediator.Send(new MakeOrderCommand { MakeOrderDto = orders });
+            return NoContent();
+        }
+
+        [HttpPatch("mark-as-done")]
+        public async Task<ActionResult<Unit>> CompleteOrder([FromBody] List<CompleteOrderDto> orders)
+        {
+            await _mediator.Send(new CompleteOrderCommand { CompleteOrder = orders });
             return NoContent();
         }
 

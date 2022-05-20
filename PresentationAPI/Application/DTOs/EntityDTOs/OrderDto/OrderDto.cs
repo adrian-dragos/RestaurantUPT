@@ -14,7 +14,7 @@ namespace Application.DTOs.EntityDTOs.OrderDto
         public int? StudentId { get; set; }
         public int? Quantity { get; set; }
         public double? TotalPrice { get; set; }
-        public DateTime? DateOfDeleivery { get; set; }
+        public DateTime? DateOfDelivery { get; set; }
         public OrderStatusDto? Status { get; set; }
     }
 }

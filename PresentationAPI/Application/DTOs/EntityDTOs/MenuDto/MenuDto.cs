@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.DTOs.CommonDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.EntityDTOs.MenuDto
 {
-    public class MenuDto
+    public class MenuDto : BaseEntityDto
     {
         public DateTime Day { get; set; }
         public bool MealId1 { get; set; } = false;

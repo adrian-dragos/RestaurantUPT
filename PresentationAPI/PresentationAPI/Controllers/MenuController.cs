@@ -1,4 +1,7 @@
-﻿using Application.Features.Menus.Queries.GetMenuList;
+﻿using Application.DTOs.EntityDTOs.MenuDto;
+using Application.Features.Menus.Commands.AddMeniu;
+using Application.Features.Menus.Commands.UpdateMeniu;
+using Application.Features.Menus.Queries.GetMenuList;
 using Application.Features.Menus.Queries.GetMenuListOnSpecificDay;
 using Domain.Entities;
 using MediatR;
@@ -36,5 +39,27 @@ namespace PresentationAPI.Controllers
             return Ok(menu);
         }
 
+        [HttpPut("date")]
+        public async Task<ActionResult<List<Menu>>> CreateMenuForSpecificDay(DateTime date, CreateMenuOnSpecicDayDto menuDto)
+        {
+            var menu = await _mediator.Send(
+                new CreateMenuOnSpecificDayCommand { 
+                    CreateMenuOnSpecifcDay = menuDto, 
+                    Date = date 
+                });
+            return Ok(menu);
+        }
+
+        [HttpPatch("date")]
+        public async Task<ActionResult<List<Menu>>> UpdateMenuForSpecificDay(DateTime date, UpdateMenuOnSpecifcDayDto menuDto)
+        {
+            var menu = await _mediator.Send(
+                new UpdateMenuOnSpecificDayCommand
+                {
+                    UpdateMenuOnSpecifcDay = menuDto,
+                    Date = date
+                });
+            return Ok(menu);
+        }
     }
 }
