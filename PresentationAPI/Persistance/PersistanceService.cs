@@ -19,7 +19,11 @@ namespace Persistance
                 options.UseSqlServer(
                     configuration.GetConnectionString("DataBaseConnectionString")));
 
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.
+                AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
+                .AddScoped<IOrderRepository, OrderRepository>()
+                .AddScoped<IMealRepository, MealRepository>()
+                .AddScoped<IMenuRepository, MenuRepository>();
             return services;
         }
     }

@@ -36,10 +36,15 @@ namespace Persistance.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<double?>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Meals");
 
@@ -55,6 +60,36 @@ namespace Persistance.Migrations
                             Id = 2,
                             Name = "Orez",
                             Price = 4.25
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Piept de pui",
+                            Price = 4.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Cotlet de porc",
+                            Price = 4.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pula de pui dezosata",
+                            Price = 4.25
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Supa de pui",
+                            Price = 3.25
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Supa de legume",
+                            Price = 3.25
                         });
                 });
 
@@ -66,13 +101,37 @@ namespace Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Day")
+                    b.Property<DateTime?>("Day")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("MealId1")
+                    b.Property<bool?>("MealId1")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("MealId2")
+                    b.Property<bool?>("MealId10")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId3")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId4")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId5")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId6")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId7")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId8")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("MealId9")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -83,16 +142,85 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            Day = new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(659),
                             MealId1 = true,
-                            MealId2 = false
+                            MealId10 = false,
+                            MealId2 = false,
+                            MealId3 = true,
+                            MealId4 = true,
+                            MealId5 = false,
+                            MealId6 = false,
+                            MealId7 = false,
+                            MealId8 = false,
+                            MealId9 = false
                         },
                         new
                         {
                             Id = 2,
-                            Day = new DateTime(2022, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(724),
                             MealId1 = false,
-                            MealId2 = true
+                            MealId10 = false,
+                            MealId2 = true,
+                            MealId3 = false,
+                            MealId4 = false,
+                            MealId5 = true,
+                            MealId6 = false,
+                            MealId7 = true,
+                            MealId8 = false,
+                            MealId9 = false
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Order", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("DateOfDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MealId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateOfDelivery = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(968),
+                            MealId = 2,
+                            Quantity = 1,
+                            Status = 2,
+                            StudentId = 1,
+                            TotalPrice = 4.25
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateOfDelivery = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(979),
+                            MealId = 1,
+                            Quantity = 2,
+                            Status = 0,
+                            StudentId = 1,
+                            TotalPrice = 8.0
                         });
                 });
 
@@ -136,6 +264,20 @@ namespace Persistance.Migrations
                             IdNumber = "lm-12312S",
                             Name = "Banana banana"
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.Meal", b =>
+                {
+                    b.HasOne("Domain.Entities.Order", "Order")
+                        .WithMany("Meals")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Order", b =>
+                {
+                    b.Navigation("Meals");
                 });
 #pragma warning restore 612, 618
         }

@@ -31,7 +31,7 @@ namespace Persistance.Repositories
 
         public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> expression)
         {
-            return _context.Set<T>().Where(expression);
+            return _context.Set<T>().AsNoTracking().Where(expression);
         }
 
         public async Task<IEnumerable<T>> GetAll()
@@ -57,6 +57,16 @@ namespace Persistance.Repositories
         public async Task Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

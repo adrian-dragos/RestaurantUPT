@@ -13,6 +13,7 @@ namespace Persistance
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)

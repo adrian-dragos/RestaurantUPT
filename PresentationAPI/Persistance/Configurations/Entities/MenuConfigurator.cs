@@ -17,15 +17,19 @@ namespace Persistance.Configurations.Entities
                 new Menu
                 {
                     Id = 1,
-                    Day = new DateTime(2022, 05, 9),
+                    Day = DateTime.Now.AddDays(-1),
                     MealId1 = true,
-                    MealId2 = false
+                    MealId3 = true,
+                    MealId4 = true,
+
                 },
                   new Menu
                   {
                       Id = 2,
-                      Day = new DateTime(2022, 05, 9),
-                      MealId2 = true
+                      Day = DateTime.Now,
+                      MealId2 = true,
+                      MealId5 = true,
+                      MealId7 = true,
                   }
               );
         }
