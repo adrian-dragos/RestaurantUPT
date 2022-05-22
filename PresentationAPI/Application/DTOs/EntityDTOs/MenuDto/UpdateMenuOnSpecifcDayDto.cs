@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.EntityDTOs.MenuDto
 {
-    public class UpdateMenuOnSpecifcDayDto : BaseEntityDto
+    public class UpdateMenuOnSpecifcDayDto
     {
-        public DateTime Day { get; set; }
         public bool MealId1 { get; set; } = false;
         public bool MealId2 { get; set; } = false;
         public bool? MealId3 { get; set; } = false;

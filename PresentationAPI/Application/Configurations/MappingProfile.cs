@@ -34,6 +34,10 @@ namespace Application.Configurations
 
             CreateMap<UpdateMealQuantityInBasketDto, Order>()
                 .ForMember(x => x.Status, opt => opt.MapFrom(o => OrderStatus.InBasket));
+
+            CreateMap<Order, GetOrdersFromBasketDto>();
+                //.ForMember(x => x.Name, opt => opt.MapFrom(o => o.Meals.Where(x => x.Id == o.MealId).FirstOrDefault().Name))
+                //.ForMember(x => x.Price, opt => opt.MapFrom(o => o.Meals.Where(x => x.Id == o.MealId).FirstOrDefault().Price));
             #endregion Order Mappings
 
             #region OrderStatus Mappings
