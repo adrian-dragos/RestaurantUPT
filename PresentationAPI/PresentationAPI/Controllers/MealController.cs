@@ -37,7 +37,7 @@ namespace PresentationAPI.Controllers
             return Ok(meal);
         }
 
-        [HttpPut()]
+        [HttpPost()]
         public async Task<ActionResult<double>> CreateMeal(CreateMealDto mealDto)
         {
             var meal = await _mediator.Send(new CreateMealCommand { CreateMeal = mealDto });
