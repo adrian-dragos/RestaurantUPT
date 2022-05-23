@@ -29,7 +29,7 @@ export const Item = styled.div`
     border-bottom: 2px solid;
     align-items: center;
     padding-left: 30px;
-    width: 500px;
+    width: 650px;
     height: 100px;
     padding-bottom: 10px;
     padding-top: 8px;
@@ -48,7 +48,7 @@ export const ItemInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  width: 200px;
+  width: 280px;
   margin-left: 45px;
 `
 
