@@ -26,7 +26,7 @@ namespace PresentationAPI.Controllers
         }
 
         [HttpGet("{studentId}/basket")]
-        public async Task<ActionResult<Order>> GetOrderItemsFromBasket(int studentId)
+        public async Task<ActionResult<GetOrdersFromBasketDto>> GetOrderItemsFromBasket(int studentId)
         {
             var order = await _mediator.Send(new GetOrderItemsFromBasketQuery { StudentId = studentId });
             return Ok(order);

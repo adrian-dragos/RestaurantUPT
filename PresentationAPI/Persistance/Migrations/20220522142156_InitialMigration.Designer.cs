@@ -12,7 +12,7 @@ using Persistance;
 namespace Persistance.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220519171527_InitialMigration")]
+    [Migration("20220522142156_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Meal", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
@@ -41,7 +41,7 @@ namespace Persistance.Migrations
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("Price")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -97,13 +97,13 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Menu", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("Day")
+                    b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
 
                     b.Property<bool?>("MealId1")
@@ -144,7 +144,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            Day = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(659),
+                            Day = new DateTime(2022, 5, 21, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6542),
                             MealId1 = true,
                             MealId10 = false,
                             MealId2 = false,
@@ -159,7 +159,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            Day = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(724),
+                            Day = new DateTime(2022, 5, 22, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6581),
                             MealId1 = false,
                             MealId10 = false,
                             MealId2 = true,
@@ -175,11 +175,11 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfDelivery")
                         .HasColumnType("datetime2");
@@ -207,7 +207,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            DateOfDelivery = new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(968),
+                            DateOfDelivery = new DateTime(2022, 5, 21, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6699),
                             MealId = 2,
                             Quantity = 1,
                             Status = 2,
@@ -217,7 +217,7 @@ namespace Persistance.Migrations
                         new
                         {
                             Id = 2,
-                            DateOfDelivery = new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(979),
+                            DateOfDelivery = new DateTime(2022, 5, 22, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6704),
                             MealId = 1,
                             Quantity = 2,
                             Status = 0,
@@ -228,11 +228,11 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -270,11 +270,9 @@ namespace Persistance.Migrations
 
             modelBuilder.Entity("Domain.Entities.Meal", b =>
                 {
-                    b.HasOne("Domain.Entities.Order", "Order")
+                    b.HasOne("Domain.Entities.Order", null)
                         .WithMany("Meals")
                         .HasForeignKey("OrderId");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>

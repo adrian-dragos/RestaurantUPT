@@ -37,7 +37,7 @@ namespace PresentationAPI.Controllers
             return Ok(menu);
         }
 
-        [HttpPut("date")]
+        [HttpPost("date")]
         public async Task<ActionResult<List<Menu>>> CreateMenuForSpecificDay(DateTime date, CreateMenuOnSpecicDayDto menuDto)
         {
             var menu = await _mediator.Send(

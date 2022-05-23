@@ -31,8 +31,19 @@ namespace Application.Features.Menus.Commands.UpdateMeniu
             }
 
             var menu = _mapper.Map<Menu>(command.UpdateMenuOnSpecifcDay);
-            await _repository.Update(menu);
-            await _repository.SaveAsync();
+
+            var menuList = await _repository.Find(
+                x => x.Day.Day == commandDate.Day 
+                    && x.Day.Month == commandDate.Month
+                    && x.Day.Year == commandDate.Year);
+            var existentMenu = menuList.FirstOrDefault();
+            if (existentMenu != null)
+            {
+                menu.Id = existentMenu.Id;
+                menu.Day = commandDate;
+                await _repository.Update(menu);
+                await _repository.SaveAsync();
+            }
             return Unit.Value;
         }
     }

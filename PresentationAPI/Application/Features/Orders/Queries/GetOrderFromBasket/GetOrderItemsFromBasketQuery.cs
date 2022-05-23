@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Orders.Queries.GetOrderFromBasket
 {
-    public class GetOrderItemsFromBasketQuery : IRequest<List<OrderDto>>
+    public class GetOrderItemsFromBasketQuery : IRequest<List<GetOrdersFromBasketDto>>
     {
         public int StudentId { get; set; }
     }

@@ -15,7 +15,7 @@ namespace Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Day = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Day = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MealId1 = table.Column<bool>(type: "bit", nullable: true),
                     MealId2 = table.Column<bool>(type: "bit", nullable: true),
                     MealId3 = table.Column<bool>(type: "bit", nullable: true),
@@ -72,7 +72,7 @@ namespace Persistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     OrderId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -105,8 +105,8 @@ namespace Persistance.Migrations
                 columns: new[] { "Id", "Day", "MealId1", "MealId10", "MealId2", "MealId3", "MealId4", "MealId5", "MealId6", "MealId7", "MealId8", "MealId9" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(659), true, false, false, true, true, false, false, false, false, false },
-                    { 2, new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(724), false, false, true, false, false, true, false, true, false, false }
+                    { 1, new DateTime(2022, 5, 21, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6542), true, false, false, true, true, false, false, false, false, false },
+                    { 2, new DateTime(2022, 5, 22, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6581), false, false, true, false, false, true, false, true, false, false }
                 });
 
             migrationBuilder.InsertData(
@@ -114,8 +114,8 @@ namespace Persistance.Migrations
                 columns: new[] { "Id", "DateOfDelivery", "MealId", "Quantity", "Status", "StudentId", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 5, 18, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(968), 2, 1, 2, 1, 4.25 },
-                    { 2, new DateTime(2022, 5, 19, 20, 15, 26, 786, DateTimeKind.Local).AddTicks(979), 1, 2, 0, 1, 8.0 }
+                    { 1, new DateTime(2022, 5, 21, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6699), 2, 1, 2, 1, 4.25 },
+                    { 2, new DateTime(2022, 5, 22, 17, 21, 55, 793, DateTimeKind.Local).AddTicks(6704), 1, 2, 0, 1, 8.0 }
                 });
 
             migrationBuilder.InsertData(
