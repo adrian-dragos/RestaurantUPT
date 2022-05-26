@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Persistance.Configurations.Entities
 {
-    public class StudentConfigurator : IEntityTypeConfiguration<Student>
+    public class StudentConfigurator : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Student> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasData(
-                new Student
+                new User
                 {
                     Id = 1,
                     Name = "Olga Culeac",
                     IdNumber = "lm-12314",
                     Email = "olga.culeac@student.upt.ro"
                 },
-                new Student
+                new User
                 {
                     Id = 2,
                     Name = "Banana banana",
                     IdNumber = "lm-12312S",
-                    Email = "banana.banan@gmail.com"
+                    Email = "banana.banan@student.upt.ro"
                 }
             );
         }

@@ -12,7 +12,7 @@ namespace Persistance
     {
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Meal> Meals { get; set; }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -24,7 +24,7 @@ namespace Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
-            modelBuilder.Entity<Student>()
+            modelBuilder.Entity<User>()
               .HasIndex(s => new { s.IdNumber, })
               .IsUnique(true);
         }

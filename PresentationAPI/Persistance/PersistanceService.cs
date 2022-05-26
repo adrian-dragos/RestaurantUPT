@@ -23,7 +23,10 @@ namespace Persistance
                 AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>))
                 .AddScoped<IOrderRepository, OrderRepository>()
                 .AddScoped<IMealRepository, MealRepository>()
-                .AddScoped<IMenuRepository, MenuRepository>();
+                .AddScoped<IMenuRepository, MenuRepository>()
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IUserService, UserService>();
+
             return services;
         }
     }
