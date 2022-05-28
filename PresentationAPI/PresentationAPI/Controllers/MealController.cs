@@ -6,6 +6,7 @@ using Application.Features.Meals.Queries.GetMeal;
 using Application.Features.Meals.Queries.GetMealPrice;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace PresentationAPI.Controllers
             return Ok(meal);
         }
 
+        [Authorize]
         [HttpPost()]
         public async Task<ActionResult<double>> CreateMeal(CreateMealDto mealDto)
         {
@@ -44,6 +46,7 @@ namespace PresentationAPI.Controllers
             return Ok(meal);
         }
 
+        [Authorize]
         [HttpPatch()]
         public async Task<ActionResult<Unit>> UpdateMeal(UpdateMealDto mealDto)
         {
@@ -51,6 +54,7 @@ namespace PresentationAPI.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete()]
         public async Task<ActionResult<Unit>> DeleteMeal([FromBody]List<int> ids)
         {

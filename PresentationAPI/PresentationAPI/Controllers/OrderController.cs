@@ -8,12 +8,14 @@ using Application.Features.Orders.Queries.GetOrderedItems;
 using Application.Features.Orders.Queries.GetOrderFromBasket;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PresentationAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -39,6 +41,7 @@ namespace PresentationAPI.Controllers
             return Ok(order);
         }
 
+        [AllowAnonymous]
         [HttpPost("add-to-basket")]
         public async Task<ActionResult<Order>> AddOrder([FromBody] AddOrderToBasketDto orderDto)
         {
@@ -69,7 +72,7 @@ namespace PresentationAPI.Controllers
         }
 
         [HttpPatch("update-quantity-in-basket")]
-        public async Task<ActionResult<Unit>> UpdateMeal(List<UpdateMealQuantityInBasketDto> mealDto)
+        public async Task<ActionResult<Unit>> UpdateMeal(UpdateMealQuantityInBasketDto mealDto)
         {
             await _mediator.Send(new UpdateMealQuantityInBasketCommand { MealDto = mealDto });
             return NoContent();

@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace PresentationAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MenuController : ControllerBase
@@ -39,6 +38,7 @@ namespace PresentationAPI.Controllers
             return Ok(menu);
         }
 
+        [Authorize]
         [HttpPost("date")]
         public async Task<ActionResult<List<Menu>>> CreateMenuForSpecificDay(DateTime date, CreateMenuOnSpecicDayDto menuDto)
         {
@@ -50,6 +50,7 @@ namespace PresentationAPI.Controllers
             return Ok(menu);
         }
 
+        [Authorize]
         [HttpPatch("date")]
         public async Task<ActionResult<List<Menu>>> UpdateMenuForSpecificDay(DateTime date, UpdateMenuOnSpecifcDayDto menuDto)
         {
