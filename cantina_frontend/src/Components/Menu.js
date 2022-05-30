@@ -11,9 +11,10 @@ import {MenuContainer,
        ButtonBox, 
        MenuButton,
       } from '../Styles/Menu.style'
+import {useNavigate} from 'react-router'
 
 function Menu(){
-  
+  const navigate = useNavigate();
   const [meals, setMeals] = useState([]);
   const [idList, setIdList] = useState([]);
   const [toCart, setToCart] = useState({mealId: 0, studentId: 0});
@@ -32,12 +33,12 @@ function Menu(){
     id: 0
   });
   var date = new Date();
-  var year = date.getFullYear().toString;
+  var year = date.getFullYear().toString();
   var month = (date.getMonth() + 1).toString();
   if(date.getMonth() + 1 < 10){
     month = "0" + month;
   }
-  var day = date.getDate().toString();
+  var day = (date.getDate()+1).toString();
   if(date.getDate() < 10){
     day = "0" + day;
   }
@@ -49,9 +50,9 @@ function Menu(){
   }, [menu.id])
 
   async function fetchMenu(){
-    const url = 'https://localhost:44368/api/Menu/date'
+    const url = 'https://rgrestaurantapi.azurewebsites.net/api/Menu/date'
 
-  await fetch(url + "?date=" + "2022-05-19", {
+  await fetch(url + "?date=" + currentDate, {
       method: 'GET'
     })
     .then(response => response.json())
@@ -63,23 +64,22 @@ function Menu(){
   }
 
   async function addToCart(){
-    const url = 'https://localhost:44368/api/Order/add-to-basket'
+    const url = 'https://rgrestaurantapi.azurewebsites.net/api/Order/add-to-basket'
     await fetch(url, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer' + (JSON.parse(localStorage.getItem('user')))?.value.token 
+        },
         body: JSON.stringify(toCart),
       })
       .then(response => response.json())
       .catch(error => console.log(error));
   }
 
-  // function addToCart(index){
-  //   console.log(idList[index]);
-  // }
-
   async function fetchMeals(){
     var j = 0;
-    const url = 'https://localhost:44368/api/Meal/';
+    const url = 'https://rgrestaurantapi.azurewebsites.net/api/Meal/';
 
     for(j = 0; j < 9; j++){
       switch(j){
@@ -238,7 +238,12 @@ function Menu(){
                 </MenuInfo>
                 <ButtonBox>
                   <MenuButton onMouseOver={() => { setToCart({mealId: idList[index], studentId: 1});}} 
-                    onClick={() => {addToCart();}}>Comanda
+                    onClick={() => {
+                      if(!localStorage.getItem('user')){
+                         navigate("/login"); 
+                      }else{ 
+                        addToCart(); 
+                      }}}>Comanda
                   </MenuButton>
                 </ButtonBox>
             </MenuCard>

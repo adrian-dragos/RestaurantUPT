@@ -128,3 +128,49 @@ export const RemoveButton = styled.button`
         width: 350px;
     }
 `
+
+export const PlusButton = styled.button`
+    border-radius: 4px;
+    background: #01135d;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: 25px;
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        background: #023e8a;
+        color: #fff;
+    }
+    @media screen and (max-width: 768px){
+        width: 350px;
+    }
+`
+
+export const MinusButton = styled.button`
+    border-radius: 4px;
+    background: #01135d;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: 25px;
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        background: #023e8a;
+        color: #fff;
+    }
+    @media screen and (max-width: 768px){
+        width: 350px;
+    }
+`

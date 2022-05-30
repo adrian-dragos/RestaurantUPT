@@ -14,6 +14,7 @@ export const FormContainer = styled.div`
     max-width: 450px;
     border-radius: 10px;
     padding: 50px;
+    padding-bottom: 75px;
     margin-bottom: 40px;
     background-color: #fff;
     box-shadow: 0px 3px 15px #01135d;

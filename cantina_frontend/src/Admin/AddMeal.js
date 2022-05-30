@@ -7,8 +7,20 @@ function AddMeal() {
     const [mealForm, setMealForm] = useState({
         nume: '',
         pret: '',
-        descriere: ''
+        poza: ''
     })
+
+    async function addMeal(){
+        const url = 'https://rgrestaurantapi.azurewebsites.net/api/Meal'
+        await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(mealForm),
+          })
+          .then(response => response.json())
+          .catch(error => console.log(error));
+      }
+
   return (
     <Background >
         <FormContainer>
@@ -23,15 +35,11 @@ function AddMeal() {
                         <label>Pret</label>
                         <Input type="text" required  onChange={e => setMealForm({...mealForm, pret: e.target.value})}/>
                     </Inputs>
-                    <MessageInputs>
-                        <label>Descriere</label>
-                        <MessageInput type="text" required  onChange={e => setMealForm({...mealForm, descriere: e.target.value})}></MessageInput>
-                    </MessageInputs>
                     <Inputs style={{display: 'grid'}}>
                         <label style={{marginBottom: '10px'}}>Poza</label>
-                        <FileBase type="file" multiple={false}/>
+                        <Input type="text" required  onChange={e => setMealForm({...mealForm, poza: e.target.value})}/>
                     </Inputs>
-                    <Button>Finalizeaza</Button>
+                    <Button onClick={() => addMeal()}>Finalizeaza</Button>
                 </form>
 
         </FormContainer>
