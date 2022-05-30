@@ -30,7 +30,7 @@ function Navbar() {
                     </NavBtn> 
                 ) : (
                     <NavBtn>
-                        <NavBtnLink to='/login'>Inregistreaza-te</NavBtnLink>
+                        <NavBtnLink to='/login'>Conecteaza-te</NavBtnLink>
                     </NavBtn> 
                 )}   
             </NavMenu>
