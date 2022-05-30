@@ -38,7 +38,7 @@ function Menu(){
   if(date.getMonth() + 1 < 10){
     month = "0" + month;
   }
-  var day = (date.getDate()+1).toString();
+  var day = date.getDate().toString();
   if(date.getDate() < 10){
     day = "0" + day;
   }
