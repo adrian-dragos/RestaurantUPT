@@ -11,6 +11,6 @@ namespace Domain.Entities
     {
         public string? Name { get; set; }
         public double Price { get; set; }
-        public byte[]? ImageData { get; set; }
+        public string? ImageData { get; set; }
     }
 }

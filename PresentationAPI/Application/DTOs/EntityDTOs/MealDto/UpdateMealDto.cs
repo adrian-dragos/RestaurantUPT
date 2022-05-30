@@ -6,7 +6,6 @@ namespace Application.DTOs.EntityDTOs.MealDto
     {
         public string? Name { get; set; }
         public double Price { get; set; }
-        // TODO: make it work for images
-        //public byte[]? ImageData { get; set; }
+        public string? ImageData { get; set; }
     }
 }
