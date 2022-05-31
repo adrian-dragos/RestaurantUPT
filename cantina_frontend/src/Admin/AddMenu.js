@@ -5,16 +5,32 @@ function AddMenu() {
     const date = new Date();
     var year = date.getFullYear().toString();
     var month = (date.getMonth()  + 1).toString();
-    if(month.length == 1){
+    if(date.getMonth() + 1 < 10){
         month = "0" + month;
-    }
-    var day = date.getDate().toString();
-    if(day.length == 1){
+      }
+      var day = date.getDate().toString();
+      if(date.getDate() < 10){
         day = "0" + day;
-    }
-    const [currentDate, setDate] = useState(year + "-" + month + "-" + day);
-    const [chosenDate, setChosenDate] = useState(new Date());
+      }
+    var currentDate = year + "-" + month + "-" + day;
+    const [currentDate2, setCurrentDate2] = useState(year + "-" + month + "-" + day);
+    const [chosenDate, setChosenDate] = useState("");
     const [meals, setMeals] = useState([]);
+    const [idList, setIdList] = useState([]);
+    const [menu, setMenu] = useState({
+        day: "",
+        mealId1: false,
+        mealId2: false,
+        mealId3: false,
+        mealId4: false,
+        mealId5: false,
+        mealId6: false,
+        mealId7: false,
+        mealId8: false,
+        mealId9: false,
+        mealId10: false,
+        id: 0
+      });
     const [mealIDs, setMealIds] = useState({
                                             mealId1: false,
                                             mealId2: false,
@@ -34,6 +50,162 @@ function AddMenu() {
                 {image: 'https://savoriurbane.com/wp-content/uploads/2018/02/Ostropel-de-pui-reteta-traditionala-savori-urbane.jpg', name: 'Ostropel', description: 'Ostropel de pui cu cartof piure', price: '20'}
                 ]
     
+    async function fetchMenu(paramDate){
+        const url = 'https://rgrestaurantapi.azurewebsites.net/api/Menu/date'
+    
+        await fetch(url + "?date=" + paramDate, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(menuItems => {
+            setMenu(menuItems);
+            console.log(menuItems);
+        })
+        .catch(error => console.log(error));
+        }
+                
+                
+    async function fetchMealsForOldMenu(){
+    var j = 0;
+    const url = 'https://rgrestaurantapi.azurewebsites.net/api/Meal/';
+
+    for(j = 0; j < 9; j++){
+        switch(j){
+        case 0: 
+        if(menu.mealId1 == true){
+        await fetch(url +"1", {
+            method: 'GET'
+            })
+            .then(response => response.json())
+            .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 1]);
+            })
+            .catch(error => console.log(error));
+        }
+        break;
+        case 1:
+            if(menu.mealId2 == true){
+            await fetch(url + "2", {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 2]);
+            })
+            .catch(error => console.log(error));
+            }
+            break;
+            case 2:
+            if(menu.mealId3 == true){
+                await fetch(url + "3", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 3]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 3:
+            if(menu.mealId4 == true){
+                await fetch(url + "4", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 4]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 4:
+            if(menu.mealId5 == true){
+                await fetch(url + "5", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 5]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 5:
+            if(menu.mealId6 == true){
+                await fetch(url + "6", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 6]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 6:
+            if(menu.mealId7 == true){
+                await fetch(url + "7", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 7]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 7:
+            if(menu.mealId8 == true){
+                await fetch(url + "8", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 8]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 8:
+            if(menu.mealId9 == true){
+                await fetch(url + "9", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 9]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            case 9:
+            if(menu.mealId10 == true){
+                await fetch(url + "10", {
+                method: 'GET'
+                })
+                .then(response => response.json())
+                .then(meal => {
+                setMeals(prevState => [...prevState, meal]);
+                setIdList(prevState => [...prevState, 10]);
+                })
+                .catch(error => console.log(error));
+            }
+            break;
+            default: break;
+        }
+    }
+    }
+
     var i = 0;
     async function fetchMeals(){
         const url = 'https://rgrestaurantapi.azurewebsites.net/api/Meal/'
@@ -120,7 +292,10 @@ function AddMenu() {
     
       await fetch(url + "?date=" + chosenDate, {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + (JSON.parse(localStorage.getItem('user')))?.value.token 
+        },
         body: JSON.stringify(mealIDs),
         })
         .then(response => response.json())
@@ -138,7 +313,21 @@ function AddMenu() {
         </div>
 
         <div style={{display: 'flex', width: '100%', justifyContent: 'center'}}>
-            <input style={{marginBottom: '25px', border: '2px solid #01135d', color: '#01135d', fontWeight: 'bold', width: '300px', height: '50px', fontSize: '15px'}} type="date" defaultValue={currentDate} minValue={currentDate} onChange={e => setChosenDate(e.target.value)}></input>
+            <input style={{marginBottom: '25px', border: '2px solid #01135d', color: '#01135d', fontWeight: 'bold', width: '300px', height: '50px', fontSize: '15px'}} type="date" defaultValue={currentDate} minValue={currentDate} 
+                onChange={async e => {
+                    setChosenDate((e.target.valueAsDate.getFullYear().toString() + "-" + ((e.target.valueAsDate.getMonth() < 9) ? ("0" + (e.target.valueAsDate.getMonth()+1).toString()) : (e.target.valueAsDate.getMonth()+1).toString()) + "-" + ((e.target.valueAsDate.getDate() < 10) ? ("0" + e.target.valueAsDate.getDate().toString()) : e.target.valueAsDate.getDate().toString()))); 
+                    // setMeals([]);
+                    // if(chosenDate > currentDate && chosenDate.length !== 0 ){
+                    //     await fetchMeals();
+                    // }
+                    // else if(chosenDate.length !== 0 && chosenDate < currentDate){
+                    //     await fetchMenu(chosenDate);
+                    //     await fetchMealsForOldMenu();
+                    // }else if(chosenDate === currentDate){
+                    //     await fetchMenu(chosenDate);
+                    //     await fetchMealsForOldMenu();
+                    // }
+                }}></input>
         </div>    
             <List>
                 {meals.map((item, index) => (
@@ -157,7 +346,10 @@ function AddMenu() {
             </List>
 
             <div style={{display: 'flex', width: '100%', justifyContent: 'center'}}>            
-                <AddButton onClick={() => addMenu()}>Adauga</AddButton>                
+                <AddButton onClick={() => {
+                    // 
+                    addMenu();
+                }}>Adauga</AddButton>
             </div>
 
 
