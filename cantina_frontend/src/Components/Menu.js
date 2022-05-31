@@ -69,7 +69,7 @@ function Menu(){
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer' + (JSON.parse(localStorage.getItem('user')))?.value.token 
+          'Authorization': 'Bearer ' + (JSON.parse(localStorage.getItem('user')))?.value.token 
         },
         body: JSON.stringify(toCart),
       })
