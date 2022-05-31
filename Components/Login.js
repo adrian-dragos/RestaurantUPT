@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -16,14 +16,22 @@ import {LinearGradient} from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Signup from './Signup';
+import {AuthContext} from '../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
 
 function Login({navigation}) {
-
+  const {isLoading,login} = useContext(AuthContext);
   const [data, setData] = React.useState({
     email: '',
     password: '',
     check_textInputChange: false,
     secureTextEntry: true
+  });
+  const [user, setUser] = React.useState({
+    email: '',
+    password: '',
   });
 
   const textInputChange = (val) => {
@@ -55,10 +63,34 @@ function Login({navigation}) {
       secureTextEntry: !data.secureTextEntry
     });
   }
+  const validate = () => {
+    setUser({
+      ...user,
+      password: data.password,
+      email: data.email
+    });
+    console.log(user);
+    //authenticate();
+    login(user.email,user.password);
+    navigation.navigate('Home');
+  }
+
+  // async function authenticate() {
+  //   const url = 'https://rgrestaurantapi.azurewebsites.net/api/Users/authenticate'
+  //   await fetch(url, {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(user)
+  //   })
+  //       .then(response => response.json())
+  //       .then(u=>{console.log(u); setStudent(u)})
+  //       .catch(error => console.log(error));
+  // }
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor='#01135d' barStyle="light-content"/>
+      <Spinner visible={isLoading}/>
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
@@ -127,14 +159,23 @@ function Login({navigation}) {
         </View>
 
         <View style={styles.button}>
-          <LinearGradient
-              colors={['#022097','#01135d']}
-              style={styles.signIn}
-          >
+          <TouchableOpacity
+              onPress={() => {login(data.email,data.password); navigation.navigate('Home');}}
+              style = {{
+                width: '100%',
+                height: 50,
+                justifyContent: 'center',
+                alignItems: 'center',}}>
+            <LinearGradient
+                colors={['#022097','#01135d']}
+                style={styles.signIn}
+            >
               <Text style={[styles.textSign,{
                 color: '#fff'
               }]}>Log In</Text>
-          </LinearGradient>
+            </LinearGradient>
+          </TouchableOpacity>
+
 
           <TouchableOpacity
               onPress={() => navigation.navigate('Signup')}

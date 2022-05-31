@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image } from "react-native"
 import {LinearGradient} from 'expo-linear-gradient'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Animatable from 'react-native-animatable';
-import MenuScreen from './MenuScreen';
 import Login from './Login';
-
+import Menu from './Menu'
+import {AuthContext} from '../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay/src/index';
 
 function Home({navigation}) {
 //const Home = ({navigation}) =>{
+    const {userInfo, logout, isLoading} = useContext(AuthContext);
   return (
       <View style={styles.container}>
+          <Spinner visible={isLoading}/>
         <View style={styles.header}>
           <Animatable.Image
               animation="bounceIn"
@@ -24,20 +27,37 @@ function Home({navigation}) {
             animation="fadeInUpBig">
           <Text style={styles.title}>DOAR LA CANTINA UPT</Text>
           <Text style={styles.text}>Lorem ipsum</Text>
+            {userInfo.token ? (
           <View style={styles.button}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>navigation.navigate('Menu')}>
                 <LinearGradient colors={['#022097','#01135d']} style={styles.signIn}>
                   <Text style={styles.textSign}>Vezi Meniul</Text>
                   <MaterialIcons name="navigate-next" color="#fff" size={20}/>
                 </LinearGradient>
               </TouchableOpacity>
-              <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+              <TouchableOpacity onPress={logout}>
                   <LinearGradient colors={['#022097','#01135d']} style={styles.signIn}>
-                      <Text style={styles.textSign}>Login</Text>
+                      <Text style={styles.textSign}>LogOut</Text>
                       <MaterialIcons name="navigate-next" color="#fff" size={20}/>
                   </LinearGradient>
               </TouchableOpacity>
           </View>
+            ) : (
+                    <View style={styles.button}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Menu')}>
+                            <LinearGradient colors={['#022097','#01135d']} style={styles.signIn}>
+                                <Text style={styles.textSign}>Vezi Meniul</Text>
+                                <MaterialIcons name="navigate-next" color="#fff" size={20}/>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+                            <LinearGradient colors={['#022097','#01135d']} style={styles.signIn}>
+                                <Text style={styles.textSign}>Login</Text>
+                                <MaterialIcons name="navigate-next" color="#fff" size={20}/>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+                )}
         </Animatable.View>
     </View>
   )

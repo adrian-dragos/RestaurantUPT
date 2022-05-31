@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import {
     View,
     Text,
@@ -16,9 +16,12 @@ import {LinearGradient} from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Login from './Login';
+import {AuthContext} from '../context/AuthContext';
+
 
 function Signup({navigation}) {
-
+    //const {register} = useContext(AuthContext);
+    const [emailValid,setEmailValid] = React.useState(false)
     const [data, setData] = React.useState({
         name: '',
         email: '',
@@ -29,9 +32,18 @@ function Signup({navigation}) {
         secureTextEntry: true,
         confirm_secureTextEntry: true
     });
+    const [user, setUser] = React.useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+    const [users, setUsers] = React.useState([]);
 
     const textInputChange = (val) => {
-        if( val.length !== 0 ) {
+        validateEmail(val);
+        console.log("valid:");
+        console.log(emailValid);
+        if( val.length !== 0 && emailValid==true) {
             setData({
                 ...data,
                 email: val,
@@ -46,7 +58,7 @@ function Signup({navigation}) {
         }
     }
     const nameInputChange = (val) => {
-        if( val.length !== 0 ) {
+        if( val.length !== 0 && val.length>6) {
             setData({
                 ...data,
                 name: val,
@@ -88,6 +100,66 @@ function Signup({navigation}) {
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
     }
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[\w-\.]+@student\.upt\.ro$/;
+        if(emailRegex.test(email)){
+            // users.forEach(item => {
+            //     if(item.email == email){
+            //         alert("Account already exists!");
+            //         setEmailValid(false);
+            //     }
+            // })
+            setEmailValid(true);
+        }else{
+            setEmailValid(false);
+        }
+    }
+
+    const validatePassword = () => {
+        if(data.password!=data.confirm_password){
+            alert("Parolele nu se potrivesc!");
+        }else{
+            setUser({
+                ...user,
+                password: data.password,
+                name: data.name,
+                email: data.email
+            });
+            console.log(user);
+            //register(user.name,user.email,user.password);
+            register();
+            navigation.navigate('Login');
+        }
+    }
+
+    async function fetchUsers (){
+        const url = 'http://10.0.2.2:45424/api/Users'
+        await fetch(url,{
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(usrs => {
+                setUsers(usrs);
+                console.log(users);
+            })
+            .catch(error => console.log(error));
+    }
+
+    async function register() {
+        const url = 'https://rgrestaurantapi.azurewebsites.net/api/Users/register'
+        await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
+        })
+            .then(response => response.json())
+            .catch(error => alert(error));
+    }
+
+    // useEffect(() => {
+    //     fetchUsers();
+    // })
 
     return (
         <View style={styles.container}>
@@ -135,12 +207,15 @@ function Signup({navigation}) {
                         size={20}
                     />
                     <TextInput
-                        placeholder="Your Email"
+                        placeholder="Your Email (ex: nume@Student.upt.ro)"
                         style={styles.textInput}
                         autoCapitalize="none"
                         onChangeText={(val) => textInputChange(val)}
+                        //onChangeText={(val) => validateEmail(val)}
+
                     />
-                    {data.check_textInputChange ?
+                    {/*{data.check_textInputChange ?*/}
+                    {emailValid ?
                         <Animatable.View
                             animation="bounceIn"
                         >
@@ -150,7 +225,15 @@ function Signup({navigation}) {
                                 size={20}
                             />
                         </Animatable.View>
-                        : null}
+                        : <Animatable.View
+                            animation="bounceIn"
+                        >
+                            <Feather
+                                name="x-circle"
+                                color="red"
+                                size={20}
+                            />
+                        </Animatable.View>}
                 </View>
                 <Text style={[styles.text_footer, {
                     marginTop:16
@@ -223,14 +306,23 @@ function Signup({navigation}) {
                 </View>
 
                 <View style={styles.button}>
-                    <LinearGradient
-                        colors={['#022097','#01135d']}
-                        style={styles.signIn}
+                    <TouchableOpacity
+                        onPress={() => {validatePassword()}}
+                        style = {{
+                            width: '100%',
+                            height: 50,
+                            justifyContent: 'center',
+                            alignItems: 'center',}}
                     >
-                        <Text style={[styles.textSign,{
-                            color: '#fff'
-                        }]}>Sign Up</Text>
-                    </LinearGradient>
+                        <LinearGradient
+                            colors={['#022097','#01135d']}
+                            style={styles.signIn}
+                        >
+                            <Text style={[styles.textSign,{
+                                color: '#fff'
+                            }]}>Sign Up</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Login')}

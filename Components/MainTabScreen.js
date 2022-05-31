@@ -2,15 +2,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import HomeNew from './HomeNew';
 import Home from './Home';
 import Login from './Login';
-import MenuScreen from './MenuScreen';
 import BasketScreen from './BasketScreen';
 import OrdersScreen from './OrdersScreen';
-import Profile from "./Profile";
 import Menu from './Menu';
-import { MaterialBottomTabView } from "@react-navigation/material-bottom-tabs";
+
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -56,7 +53,7 @@ const MainTabScreen = () => (
                 ),
             }}
         />
-        <Tab.Screen 
+        <Tab.Screen
             name="Orders"
             component={OrdersScreen}
             options={{
@@ -66,7 +63,7 @@ const MainTabScreen = () => (
                     <Icon name="clipboard-text-outline" color={color} size={26} />
                 ),
             }}
-        /> 
+        />
     </Tab.Navigator>
 );
 

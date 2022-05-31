@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer,DefaultTheme } from "@react-navigation/native";
 import MainTabScreen from './Components/MainTabScreen';
-import { 
+import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem, 
+  DrawerItem,
 } from '@react-navigation/drawer';
 import { DrawerContent } from './Components/DrawerContent';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,6 +16,7 @@ import Signup from './Components/Signup';
 import Details from './Components/Details';
 import { createStackNavigator } from '@react-navigation/stack'
 import { StyleSheet } from 'react-native';
+import {AuthProvider} from './context/AuthContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,17 +32,21 @@ function MyDrawer() {
       <Drawer.Screen name="Signup" component={Signup} />
       <Drawer.Screen name="Details" component={Details} />
     </Drawer.Navigator>
-  ); 
+  );
 }
-
 
 
 function App() {
   return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
+      <AuthProvider>
+        <NavigationContainer>
+          <MyDrawer />
+        </NavigationContainer>
+      </AuthProvider>
+
   );
 }
 
 export default App;
+
+
